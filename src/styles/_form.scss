@@ -1,0 +1,42 @@
+.form {
+    text-align: center;
+
+    &-preview {
+        background-color: #f6f8fa;
+        border: 1px solid #d0d7de;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 240px;
+        margin: 0 auto 10px auto;
+        max-width: 500px;
+        position: relative;
+
+        &__input {
+            cursor: pointer;
+            height: 100%;
+            opacity: 0;
+            position: absolute;
+            width: 100%;
+        }
+
+        .icon {
+            height: 50px;
+            width: 50px;
+        }
+
+        &__image {
+            border-radius: 10px;
+            height: 100%;
+            object-fit: cover;
+            width: 100%;
+        }
+    }
+
+    &-button {
+        margin: 20px 0;
+        text-align: center;
+        width: 100%;
+    }
+}

@@ -1,32 +1,10 @@
 /**
- * Add preview for uploaded image
- */
-const addImagePreview = () => {
-    const imageField = document.querySelector('.image-file')
-
-    imageField.addEventListener('change', function() {
-        let imageFile = document.querySelector('.image-file').files
-        setBase64(imageFile[0]);
-    })
-
-    const setBase64 = (file) => {
-        const defaultImage = document.querySelector('.image-preview')
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-    
-        reader.onload = function () {
-            defaultImage.setAttribute('src', reader.result)
-        };
-    }
-}
-
-/**
  * Convert image file to Base64 and pass its value to an area
  */
-function addBase64Code() {
-    const applyButton = document.querySelector('.apply-button')
+function convertImageFile() {
+    const imageField = document.querySelector('.image-file')
 
-    applyButton.addEventListener('click', () => {
+    imageField.addEventListener('change', () => {
         let imageFile = document.querySelector('.image-file').files
 
         if (imageFile.length > 0) {
@@ -35,14 +13,19 @@ function addBase64Code() {
     })
 
     const setBase64 = (file) => {
+        // Dom Elements
+        const resultField = document.querySelector('.result')
         const textField = document.querySelector('.text-field')
+        const defaultImage = document.querySelector('.image-preview')
 
         const reader = new FileReader();
         reader.readAsDataURL(file);
     
         reader.onload = function () {
-            textField.innerText = reader.result
-            console.log(reader.result)
+            defaultImage.setAttribute('src', reader.result)
+            defaultImage.classList.remove('icon')
+            resultField.classList.add('is-visible')
+            textField.value = reader.result
         };
     }
 }
@@ -55,7 +38,7 @@ const copyToClipboard = () => {
     const copyButton = document.querySelector('.copy-button')
 
     copyButton.addEventListener('click', function() {
-        navigator.clipboard.writeText(textField.innerText)
+        navigator.clipboard.writeText(textField.value)
             .then(
                 // sucess
                 () => {
@@ -70,7 +53,6 @@ const copyToClipboard = () => {
 }
 
 window.addEventListener('load', function() {
-    addImagePreview()
-    addBase64Code()
+    convertImageFile()
     copyToClipboard()
 })
