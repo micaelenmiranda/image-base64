@@ -1,5 +1,5 @@
 /**
- * Convert image file to Base64 and pass its value to an area
+ * Convert image file to Base64 and pass its value to input
  */
 function convertImageFile() {
     const imageField = document.querySelector('.image-file')
